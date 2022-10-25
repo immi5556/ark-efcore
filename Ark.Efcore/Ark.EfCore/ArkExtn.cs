@@ -41,6 +41,7 @@ namespace Ark.EfCore
                 {
                     options.UseMySQL(config.connection_string);
                 }
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
         }
     }

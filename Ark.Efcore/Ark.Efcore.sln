@@ -12,7 +12,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DEAB30DE-4F49-4F54-99CC-30A8117877F9}"
 	ProjectSection(SolutionItems) = preProject
 		key_points.txt = key_points.txt
+		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Sqlite", "Ark.Sqlite\Ark.Sqlite.csproj", "{C3D7B338-019D-4453-B897-9383AC2795DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +35,10 @@ Global
 		{4F970330-A3C4-4746-A0E2-69EACAEF9DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F970330-A3C4-4746-A0E2-69EACAEF9DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F970330-A3C4-4746-A0E2-69EACAEF9DF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3D7B338-019D-4453-B897-9383AC2795DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3D7B338-019D-4453-B897-9383AC2795DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3D7B338-019D-4453-B897-9383AC2795DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3D7B338-019D-4453-B897-9383AC2795DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
