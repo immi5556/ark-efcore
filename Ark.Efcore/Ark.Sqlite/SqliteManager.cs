@@ -1,5 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Data.Sqlite;
+using System.Data;
+using System.Runtime.CompilerServices;
 
 namespace Ark.Sqlite
 {
@@ -80,6 +82,20 @@ namespace Ark.Sqlite
             using (var connection = new SqliteConnection(_connection_string))
                 return connection.Query<T>(qry);
         }
+        //public DataTable ExecuteSelect(string qry)
+        //{
+        //    using (var connection = new SqliteConnection(_connection_string))
+        //    {
+        //        DataTable dt = new DataTable();
+        //        using (var cmd = connection.CreateCommand())
+        //        {
+        //            cmd.CommandText = qry;
+        //            cmd.CommandType = CommandType.Text;
+                    
+        //        }
+        //    }
+        //    return connection.Query<T>(qry);
+        //}
         public dynamic Select(string qry)
         {
             using (var connection = new SqliteConnection(_connection_string))

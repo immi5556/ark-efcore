@@ -2,6 +2,8 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+using tt;
+using Ark.Sqlite;
 
 Console.WriteLine("Hello, World!");
 
@@ -72,9 +74,32 @@ void test3()
 ");
     Console.WriteLine(tg);
 }
-test();
-test2();
+//test();
+//test2();
 
+
+void testcsv()
+{
+    var tg = new Ark.Sqlite.SqliteManager("Data Source=hello.db").ExecuteQuery(@"INSERT INTO records (
+                        title,
+                        [key],
+                        value,
+                        ip,
+                        at
+                    )
+                    VALUES (
+                        'title',
+                        'key',
+                        'value',
+                        'ip',
+                        '11/11/2022 6:09:25 PM'
+                    );
+");
+    var tt = new Ark.Sqlite.SqliteManager("Data Source=hello.db").ExecuteSelect<Record>("select * from records;").ToList();
+    var str = tt.ToCsv<Record>();
+    Console.WriteLine(str);
+}
+testcsv();
 namespace tt
 {
 
