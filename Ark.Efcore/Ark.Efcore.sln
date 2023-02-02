@@ -11,11 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ark.Csle", "Ark.Csle\Ark.Cs
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DEAB30DE-4F49-4F54-99CC-30A8117877F9}"
 	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
 		key_points.txt = key_points.txt
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ark.Sqlite", "Ark.Sqlite\Ark.Sqlite.csproj", "{C3D7B338-019D-4453-B897-9383AC2795DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ark.Sqlite", "Ark.Sqlite\Ark.Sqlite.csproj", "{C3D7B338-019D-4453-B897-9383AC2795DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
