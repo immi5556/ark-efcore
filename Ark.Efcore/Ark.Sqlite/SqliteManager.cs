@@ -56,6 +56,20 @@ namespace Ark.Sqlite
                 return connection.ExecuteScalar("select last_insert_rowid()");
             }
         }
+        public object? ExecuteScalar(string qry)
+        {
+            using (var connection = new SqliteConnection(_connection_string))
+            {
+                return connection.ExecuteScalar(qry);
+            }
+        }
+        public T? ExecuteScalar<T>(string qry)
+        {
+            using (var connection = new SqliteConnection(_connection_string))
+            {
+                return connection.ExecuteScalar<T>(qry);
+            }
+        }
         /// <summary>
         /// Scaler query, reutrns only the aggregate count values, (ex: count, max, min etc)
         /// </summary>
