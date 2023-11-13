@@ -9,3 +9,11 @@ install gloablly cli tool
 > dotnet ef migrations add basev1 --project ./Ark.Efcore.Web -- --provider Sqlite
 
 > dotnet ef migrations add <Migration Name> --project ./Ark.Postgres -- --provider Postgres
+
+--icons used
+https://materializecss.com/icons.html
+
+
+--- tag helper inclusion
+- scripp sample
+https://khalidabuhakmeh.com/aspnet-core-javascript-collocated-taghelper
