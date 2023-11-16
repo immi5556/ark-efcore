@@ -1,10 +1,11 @@
 using Ark.Efcore.Web.Models;
 using Ark.EfCore;
+using Ark.View;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddArkView(); //works
 builder.Services.AddRazorPages();
 builder.Services.AddArkContext<SampleDbContext>(builder.Configuration);
 var app = builder.Build();
@@ -21,7 +22,7 @@ Console.WriteLine(tt);
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<SampleDbContext>();
-    await SampleDbContext.InitializeAsync(db);
+    //await SampleDbContext.InitializeAsync(db);
     //db.Database.EnsureCreated();
 }
 

@@ -1,10 +1,32 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@using Ark.Immanuel;
+@using Ark.View;
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-<sqlite-view></sqlite-view>
+<hr />
+<span>Check sqlite-view</span>
+<sqlite-view Connection-String="church.db" data-qry="select * from audit_log;"></sqlite-view>
+<br />
+<hr />
+<span>Check dir-list 1</span>
+<dir-list dir-path="./Invalid"></dir-list>
+<br />
+<hr />
+<span>Check dir-list 2</span>
+<dir-list dir-path="Test_DirList"></dir-list>
+<br />
+<hr />
+<span>Check dir-list (nested) 3</span>
+<dir-list dir-path="Test_DirList" nested="true"></dir-list>
+<br />
+<hr />
+<span>Check dir-list (nested wtih delete button) 4</span>
+<dir-list dir-path="Test_DirList" nested="true" deletable="true"></dir-list>
+
+<br />
+<br />
+<hr />

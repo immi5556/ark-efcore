@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -23,7 +23,16 @@
   <ItemGroup>
     <ProjectReference Include="..\Ark.EfCore\Ark.EfCore.csproj" />
     <ProjectReference Include="..\Ark.SqliteTagHelper\Ark.TagHelper.csproj" />
-    <ProjectReference Include="..\SqliteView\SqliteView.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="church.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Test_DirList\" />
   </ItemGroup>
 
 </Project>
