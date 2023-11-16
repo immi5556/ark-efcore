@@ -1,9 +1,9 @@
-# Arl.Sqlite 
+# Ark.TagHelper
 
-## Simple c# library to enable sqlite query usage much simple & fast
+## Simple c# library to enable sqlite view query usage much simple & fast using tag helper
 
 nuget install:
-[![Generic badge](https://img.shields.io/nuget/v/ark.sqlite?color=green&label=nuget&style=for-the-badge)](https://www.nuget.org/packages/Ark.Sqlite)
+[![Generic badge](https://img.shields.io/nuget/v/ark.sqlite?color=green&label=nuget&style=for-the-badge)](https://www.nuget.org/packages/Ark.TagHelper)
 ````
     NuGet\Install-Package Ark.Sqlite
 ````
@@ -25,9 +25,13 @@ nuget install:
 
 - all the columns in the querywill be listed as below
 
+    = attributes
+        - connection-string: sqlite db file relative path
+        - data-qry: sqlite query to fetch the data
+
 PREVIEW
 ![sqlite-view preview](./sqlite-view-preview.PNG)
 
 TO DOs:
 
-- enable scoket to listen to chagnes and auto refresh
+- enable socket to listen to chagnes and auto refresh
