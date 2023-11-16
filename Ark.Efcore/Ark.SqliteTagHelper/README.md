@@ -5,7 +5,7 @@
 nuget install:
 [![Generic badge](https://img.shields.io/nuget/v/ark.sqlite?color=green&label=nuget&style=for-the-badge)](https://www.nuget.org/packages/Ark.TagHelper)
 ````
-    NuGet\Install-Package Ark.Sqlite
+    NuGet Install-Package Ark.TagHelper
 ````
 
 1. Included sqlite-view - TagHelper
