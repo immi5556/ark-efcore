@@ -26,7 +26,7 @@ nuget install:
 - all the columns in the querywill be listed as below
 
 PREVIEW
-![sqlite-view preview](./sqlite-view-preview.png)
+![sqlite-view preview](./sqlite-view-preview.PNG)
 
 TO DOs:
 
