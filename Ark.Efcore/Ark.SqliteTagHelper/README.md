@@ -55,9 +55,20 @@ PREVIEW
         - deletable: (optional: false) default, delete action not shown. 
 
 PREVIEW
-![sqlite-view preview](./dir-list-nested-delete-preview.png)
+![dir-list preview](./dir-list-nested-delete-preview.png)
+
+Styles:
+    - this is a simple inline css
+    - 
 
 TO DOs:
 
 - enable socket to listen to chagnes and auto refresh
 - dir-list, enable pattern filtering
+- enhance css extendable
+- table lazy loading
+- large dataset load
+
+expected issue:
+
+- large dataset perf issues
