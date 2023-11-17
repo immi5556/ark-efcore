@@ -68,6 +68,7 @@ TO DOs:
 - enhance css extendable
 - table lazy loading
 - large dataset load
+- show/hide columns
 
 expected issue:
 
