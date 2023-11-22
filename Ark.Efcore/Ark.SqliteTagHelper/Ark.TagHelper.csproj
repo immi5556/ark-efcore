@@ -24,7 +24,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Ark.Sqlite" Version="1.0.0" />
+		<PackageReference Include="Ark.Sqlite" Version="1.0.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="Icon\ark_logo.png" Pack="true" PackagePath="" />
