@@ -99,7 +99,56 @@ void testcsv()
     var str = tt.ToCsv<Record>();
     Console.WriteLine(str);
 }
-testcsv();
+//testcsv();
+
+void TestDbCreateTbl()
+{
+    new Ark.Sqlite.SqliteManager("Data Source=hello.db").CreateTable("tabl_test_3",
+        new Dictionary<string, ColumnProp>() 
+        {
+            { "col_id", new ColumnProp() { Seq = 0, DataType = typeof(int), Constraints = new Constraint[] { Constraint.NotNull, Constraint.Primary_AutoIncrement } } },
+            { "col_1", new ColumnProp() { Seq = 1, DataType = typeof(string) } },
+            { "col_2", new ColumnProp() { Seq = 2, DataType = typeof(string), Constraints = new Constraint[] { Constraint.Check }, CheckList = new object[] { "test_1", "test_2" } } }
+        }
+        );
+}
+
+//TestDbCreateTbl();
+
+void InsertScriptTbl()
+{
+    new Ark.Sqlite.SqliteManager("Data Source=hello.db").InsertTable("tabl_test_3",
+        new Dictionary<string, object>
+        {
+            //{ "col_id", 123 },
+            { "col_1", "dfsdfdsf" },
+            { "col_2", "test_2" }
+            //{ "col_2", "wewewe" }
+        }
+        );
+}
+
+InsertScriptTbl();
+
+void UpdateScriptTbl()
+{
+    new Ark.Sqlite.SqliteManager("Data Source=hello.db").UpdateTable("tabl_test_3",
+        new Dictionary<string, object>
+        {
+            //{ "col_id", 123 },
+            { "col_1", "12122" },
+            { "col_2", "test_2" }
+            //{ "col_2", "wewewe" }
+        },
+        new Dictionary<string, object>
+        {
+            { "col_1", "12122"  }
+        }
+        );
+}
+
+UpdateScriptTbl();
+
 namespace tt
 {
 

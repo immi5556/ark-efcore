@@ -1,12 +1,27 @@
 ﻿using Dapper;
 using Microsoft.Data.Sqlite;
+using System;
 using System.Data;
 using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Ark.Sqlite
 {
     public class SqliteManager
     {
+        private static readonly Random _random = new Random();
+        public static string RandomString(int size, bool lowerCase = true)
+        {
+            var builder = new StringBuilder(size);
+            char offset = lowerCase ? 'a' : 'A';
+            const int lettersOffset = 26; // A...Z or a..z: length=26
+            for (var i = 0; i < size; i++)
+            {
+                var @char = (char)_random.Next(offset, offset + lettersOffset);
+                builder.Append(@char);
+            }
+            return lowerCase ? builder.ToString().ToLower() : builder.ToString();
+        }
         public static string RemoveSpecialChar(string str)
         {
             string[] chars = new string[] { ",", ".", "/", "!", "@", "#", "$", "%", "^", "&", "*", "'", "\"", ";", "_", "(", ")", ":", "|", "[", "]" };
@@ -40,6 +55,18 @@ namespace Ark.Sqlite
         public SqliteManager(string connection_string)
         {
             _connection_string = connection_string;
+        }
+        public void UpdateTable(string table, Dictionary<string, object> cols, Dictionary<string, object> where)
+        {
+            ExecuteQuery(new TableScript().GenerateUpdateScript(table, cols, where));
+        }
+        public void InsertTable(string table, Dictionary<string, object> cols)
+        {
+            ExecuteQuery(new TableScript().GenerateInsertScript(table, cols));
+        }
+        public void CreateTable(string table, Dictionary<string, ColumnProp> cols)
+        {
+            CreateTable(new TableScript().GenerateCreateScript(table, cols));
         }
         public void CreateTable(string qry)
         {
@@ -105,7 +132,7 @@ namespace Ark.Sqlite
         //        {
         //            cmd.CommandText = qry;
         //            cmd.CommandType = CommandType.Text;
-                    
+
         //        }
         //    }
         //    return connection.Query<T>(qry);

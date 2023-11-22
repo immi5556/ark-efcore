@@ -4,16 +4,32 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>1.0.0.0</Version>
-		<Description>version 1 release</Description>
+		<Version>1.0.1.0</Version>
+		<Description>
+			simple sqlite helper library
+			- creating table from object
+			- creating dml query generation (update, insert)
+		</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<IsPackable>true</IsPackable>
+		<PackageIcon>ark_logo.png</PackageIcon>
+		<Authors>Immanuel R</Authors>
+		<Title>Sqlite help library</Title>
+		<PackageTags>ark-sqlite; sqlite-helper;</PackageTags>
+		<PackageReleaseNotes>Sqlite made easy</PackageReleaseNotes>
+		<RepositoryUrl>https://github.com/immi5556/ark-efcore/tree/main/Ark.Efcore/Ark.Sqlite</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryBranch>main</RepositoryBranch>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Dapper" Version="2.1.4" />
 		<PackageReference Include="Microsoft.Data.Sqlite" Version="7.0.12" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="Icon\ark_logo.png" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 </Project>
