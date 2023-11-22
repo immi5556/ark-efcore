@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
@@ -13,10 +13,21 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<IsPackable>true</IsPackable>
 		<OutputType>Library</OutputType>
+		<PackageIcon>ark_logo.png</PackageIcon>
+		<Authors>Immanuel R</Authors>
+		<Title>Tag Helpers</Title>
+		<PackageTags>upload-view, dir-list;TagHelper;DirectoryList(dir-list);UploadViewupload-view;</PackageTags>
+		<PackageReleaseNotes>This is the upload-view included</PackageReleaseNotes>
+		<RepositoryUrl>https://github.com/immi5556/ark-efcore/tree/main/Ark.Efcore/Ark.SqliteTagHelper</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryBranch>main</RepositoryBranch>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Ark.Sqlite" Version="1.0.0" />
+		<PackageReference Include="Ark.Sqlite" Version="1.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Icon\ark_logo.png" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 </Project>
