@@ -57,6 +57,29 @@ PREVIEW
 PREVIEW
 ![dir-list preview](./dir-list-nested-delete-preview.png)
 
+3. upload-view - TagHelper
+
+````
+    use below code in DI registration at library level
+        builder.Services.AddArkView();
+
+    use below in _ViewImports.cshtml
+        @addTagHelper *, Ark.TagHelper
+
+    use below in the *.cshtml
+        @using Ark.View;
+        below html content will render as upload control
+        <upload-view></upload-view>
+````
+
+- simple upload control will be listed
+- api controller will create fodler "ArkUpload/{uq_filename will be created}"
+- upload-callback: callback function (global accessible)
+
+
+PREVIEW
+![upload-view preview](./upload-view-preview.png)
+
 Styles:
     - this is a simple inline css
     - 

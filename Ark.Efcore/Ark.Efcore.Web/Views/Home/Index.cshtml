@@ -36,5 +36,17 @@
 <upload-view></upload-view>
 
 <br />
+<hr />
+<span>Upload View With Callback (upload view) 2</span>
+<upload-view upload-callback="func_uplaoded"></upload-view>
+
+<br />
+
 <br />
 <hr />
+
+<script>
+    var func_uplaoded = (e) => {
+        console.log(e);
+    }
+</script>

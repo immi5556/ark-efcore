@@ -13,22 +13,33 @@ namespace Ark.View
                               StringComparison.OrdinalIgnoreCase))
             {
                 output.TagName = "div";
-                output.PostContent.AppendHtml(string.Format(template_html, template_css, template_Script));
+                var uqq = TagExtn.RandomStr();
+                var callback = output.Attributes.ContainsName("upload-callback") ? (output.Attributes["upload-callback"].Value ?? "").ToString() : "";
+                
+                if (!output.PreElement.GetContent().Contains("ark-key-val-combine-check", StringComparison.OrdinalIgnoreCase))
+                {
+                    output.PostContent.AppendHtml(string.Format(template_html(uqq), template_css, template_Script(uqq, callback)));
+                }
+                else
+                {
+                    output.PostContent.AppendHtml(string.Format(template_html(uqq), "", template_Script(uqq, "")));
+                }
             }
         }
 
-        string template_html = $@"<div class=""ark-upl-container"">
+        Func<string, string> template_html = (uqq) => $@"<div class=""ark-upl-container"">
   <form class=""ark-upl-form"">
     <div class=""ark-upl-file-upload-wrapper"" data-text=""Select your file!"">
-      <input onchange=""ark_upl_change(this)"" name=""file-upload-field"" type=""file"" class=""file-upload-field"" value="""">
+      <input onchange=""ark_upl_change_{uqq}(this)"" name=""file-upload-field"" type=""file"" class=""file-upload-field"" value="""">
     </div>
     <div class=""ark-container-rest""></div>
   </form>
 <style>{{0}}
 </style>{{1}}
 </div>";
-        string template_Script = $@"<script>
-            var ark_upl_change = (ele) => {{
+        Func<string, string, string> template_Script = (uqq, cb) => $@"<script>
+            //ark-key-val-combine-check
+            var ark_upl_change_{uqq} = (ele) => {{
                 event.preventDefault();
                 ele.closest('.ark-upl-file-upload-wrapper').setAttribute('data-text', document.querySelector('.file-upload-field').value.replace(/.*(\/|\\)/, ''));
                 const formData = new FormData();
@@ -40,6 +51,7 @@ namespace Ark.View
                 .then(result => {{
                     console.log(result);
                     var ddm = ele.closest('.ark-upl-form').querySelector('.ark-container-rest');
+                    {(string.IsNullOrEmpty(cb) ? "" : $"{cb}(result);")}
                     //(result.msg || []).forEach(tt => ddm.innerHTML = ddm.innerHTML + '<br /><a href=' + tt.file_url + ' target=""_blank"">view</a>');
                 }})
                 .catch(e => console.log(e));

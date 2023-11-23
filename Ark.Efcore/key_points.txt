@@ -17,3 +17,6 @@ https://materializecss.com/icons.html
 --- tag helper inclusion
 - scripp sample
 https://khalidabuhakmeh.com/aspnet-core-javascript-collocated-taghelper
+
+self-hosted (good example)
+ https://24days.in/umbraco-cms/2022/static-assets-taghelper/
