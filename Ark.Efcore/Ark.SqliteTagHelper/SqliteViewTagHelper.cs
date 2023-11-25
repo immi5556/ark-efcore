@@ -39,12 +39,15 @@ namespace Ark.View
                             bb.Append("<tbody>");
                             first_executed = false;
                         }
-                        bb.Append("<tr>");
-                        foreach (var p in (IDictionary<string, object>)v)
+                        else
                         {
-                            bb.Append($"<td style='border: 1px solid #ddd;'>{p.Value}</td>");
+                            bb.Append("<tr>");
+                            foreach (var p in (IDictionary<string, object>)v)
+                            {
+                                bb.Append($"<td style='border: 1px solid #ddd;'>{p.Value}</td>");
+                            }
+                            bb.Append("</tr>");
                         }
-                        bb.Append("</tr>");
                     }
                     bb.Append("</tbody>");
                     output.PostContent.AppendHtml(bb.ToString() + "<lord-jesus-my-master></lord-jesus-my-master>");
