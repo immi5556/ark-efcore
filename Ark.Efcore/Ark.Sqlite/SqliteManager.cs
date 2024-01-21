@@ -142,10 +142,18 @@ namespace Ark.Sqlite
             using (var connection = new SqliteConnection(_connection_string))
                 return connection.Query(qry);
         }
-        public T First<T>(string qry)
+        public T? First<T>(string qry)
         {
-            using (var connection = new SqliteConnection(_connection_string))
-                return connection.QueryFirst<T>(qry);
+            try
+            {
+                using (var connection = new SqliteConnection(_connection_string))
+                    return connection.QueryFirst<T>(qry);
+            }
+            catch(Exception ex)
+            {
+                if (ex.Message.Contains("Sequence contains no elements")) return default(T?);
+                throw;
+            }
         }
     }
 }
