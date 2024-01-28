@@ -50,7 +50,7 @@ namespace Ark.Sqlite
         {
             if (col_param == null) throw new ArgumentNullException("col_param");
             if (col_param.Count == 0) throw new ArgumentNullException("col_param_empty");
-            string tbl = $"CREATE TABLE {table} (";
+            string tbl = $"CREATE TABLE IF NOT EXISTS {table} (";
             int ix = 0;
             col_param.ToList().OrderBy(t => t.Value.Seq).ToList().ForEach(c =>
             {
