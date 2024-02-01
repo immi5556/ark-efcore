@@ -147,7 +147,13 @@ void UpdateScriptTbl()
         );
 }
 
-UpdateScriptTbl();
+//UpdateScriptTbl();
+
+void rrr()
+{
+
+}
+
 
 namespace tt
 {
