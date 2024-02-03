@@ -54,8 +54,9 @@ namespace Ark.Sqlite
             int ix = 0;
             col_param.ToList().OrderBy(t => t.Value.Seq).ToList().ForEach(c =>
             {
-                if (++ix == col_param.Count) tbl = tbl + $" {c.Key} {GetSqliteType(c.Value.DataType)} {GetSqliteConstraints(c.Key, c.Value)}";
-                else tbl = tbl + $" {c.Key} {GetSqliteType(c.Value.DataType)} {GetSqliteConstraints(c.Key, c.Value)},";
+                var key = RESERVED_WORDS.Contains(c.Key.ToUpper()) ? $"[{c.Key}]" : c.Key;
+                if (++ix == col_param.Count) tbl = tbl + $" {key} {GetSqliteType(c.Value.DataType)} {GetSqliteConstraints(c.Key, c.Value)}";
+                else tbl = tbl + $" {key} {GetSqliteType(c.Value.DataType)} {GetSqliteConstraints(c.Key, c.Value)},";
             });
             return tbl + ");";
         }
@@ -65,7 +66,8 @@ namespace Ark.Sqlite
             var str_val = "";
             col_param.ToList().ForEach(c =>
             {
-                str_ins = str_ins + $"{c.Key},";
+                var key = RESERVED_WORDS.Contains(c.Key.ToUpper()) ? $"[{c.Key}]" : c.Key;
+                str_ins = str_ins + $"{key},";
                 str_val = str_val + (c.Value == null ? "null," : $"'{c.Value}',");
             });
             str_ins = str_ins.TrimEnd(',');
@@ -77,17 +79,168 @@ namespace Ark.Sqlite
             var str_upd = $@"UPDATE {table} set ";
             col_update.ToList().ForEach(c =>
             {
-                str_upd = str_upd + $"{c.Key} = '{SqliteManager.ReplaceSpecialChar((c.Value ?? "").ToString(), new Dictionary<string, string?>() { { "'", "" } })}',";
+                var key = RESERVED_WORDS.Contains(c.Key.ToUpper()) ? $"[{c.Key}]" : c.Key;
+                str_upd = str_upd + $"{key} = {(c.Value == null ? "null," : $"'{SqliteManager.ReplaceSpecialChar(c.Value.ToString(), new Dictionary<string, string?>() { { "'", "" } })}'")},";
             });
             str_upd = str_upd.TrimEnd(',');
             if (col_where.Count > 0) str_upd = str_upd + " where ";
             col_where.ToList().ForEach(c =>
             {
-                str_upd = str_upd + $" {c.Key} = '{SqliteManager.ReplaceSpecialChar((c.Value ?? "").ToString(), new Dictionary<string, string?>() { { "'", "" } })}' AND";
+                var key = RESERVED_WORDS.Contains(c.Key.ToUpper()) ? $"[{c.Key}]" : c.Key;
+                str_upd = str_upd + $" {key} = {(c.Value == null ? "null," : $"'{SqliteManager.ReplaceSpecialChar(c.Value.ToString(), new Dictionary<string, string?>() { { "'", "" } })}'")} AND";
             });
             str_upd = str_upd.TrimEnd("AND".ToCharArray());
             return $"{str_upd};";
         }
+
+        static string[] RESERVED_WORDS = new string[] {
+"ABORT",
+"ACTION",
+"ADD",
+"AFTER",
+"ALL",
+"ALTER",
+"ALWAYS",
+"ANALYZE",
+"AND",
+"AS",
+"ASC",
+"ATTACH",
+"AUTOINCREMENT",
+"BEFORE",
+"BEGIN",
+"BETWEEN",
+"BY",
+"CASCADE",
+"CASE",
+"CAST",
+"CHECK",
+"COLLATE",
+"COLUMN",
+"COMMIT",
+"CONFLICT",
+"CONSTRAINT",
+"CREATE",
+"CROSS",
+"CURRENT",
+"CURRENT_DATE",
+"CURRENT_TIME",
+"CURRENT_TIMESTAMP",
+"DATABASE",
+"DEFAULT",
+"DEFERRABLE",
+"DEFERRED",
+"DELETE",
+"DESC",
+"DETACH",
+"DISTINCT",
+"DO",
+"DROP",
+"EACH",
+"ELSE",
+"END",
+"ESCAPE",
+"EXCEPT",
+"EXCLUDE",
+"EXCLUSIVE",
+"EXISTS",
+"EXPLAIN",
+"FAIL",
+"FILTER",
+"FIRST",
+"FOLLOWING",
+"FOR",
+"FOREIGN",
+"FROM",
+"FULL",
+"GENERATED",
+"GLOB",
+"GROUP",
+"GROUPS",
+"HAVING",
+"IF",
+"IGNORE",
+"IMMEDIATE",
+"IN",
+"INDEX",
+"INDEXED",
+"INITIALLY",
+"INNER",
+"INSERT",
+"INSTEAD",
+"INTERSECT",
+"INTO",
+"IS",
+"ISNULL",
+"JOIN",
+"KEY",
+"LAST",
+"LEFT",
+"LIKE",
+"LIMIT",
+"MATCH",
+"MATERIALIZED",
+"NATURAL",
+"NO",
+"NOT",
+"NOTHING",
+"NOTNULL",
+"NULL",
+"NULLS",
+"OF",
+"OFFSET",
+"ON",
+"OR",
+"ORDER",
+"OTHERS",
+"OUTER",
+"OVER",
+"PARTITION",
+"PLAN",
+"PRAGMA",
+"PRECEDING",
+"PRIMARY",
+"QUERY",
+"RAISE",
+"RANGE",
+"RECURSIVE",
+"REFERENCES",
+"REGEXP",
+"REINDEX",
+"RELEASE",
+"RENAME",
+"REPLACE",
+"RESTRICT",
+"RETURNING",
+"RIGHT",
+"ROLLBACK",
+"ROW",
+"ROWS",
+"SAVEPOINT",
+"SELECT",
+"SET",
+"TABLE",
+"TEMP",
+"TEMPORARY",
+"THEN",
+"TIES",
+"TO",
+"TRANSACTION",
+"TRIGGER",
+"UNBOUNDED",
+"UNION",
+"UNIQUE",
+"UPDATE",
+"USING",
+"VACUUM",
+"VALUES",
+"VIEW",
+"VIRTUAL",
+"WHEN",
+"WHERE",
+"WINDOW",
+"WITH",
+"WITHOUT" };
     }
     public class ColumnProp
     {
