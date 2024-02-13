@@ -13,7 +13,7 @@ namespace Ark.Sqlite
             if (col_type == null) throw new ArgumentNullException("col_type");
             else if (typeof(string) == col_type) return "TEXT";
             else if (typeof(int) == col_type || typeof(long) == col_type) return "INTEGER";
-            else if (typeof(float) == col_type || typeof(decimal) == col_type || typeof(decimal) == col_type) return "REAL";
+            else if (typeof(float) == col_type || typeof(decimal) == col_type || typeof(double) == col_type) return "REAL";
             else if (typeof(byte[]) == col_type) return "BLOB";
             else if (typeof(DateTime) == col_type) return "TEXT";
             else return "TEXT";
