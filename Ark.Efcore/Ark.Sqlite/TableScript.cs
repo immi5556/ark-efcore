@@ -36,7 +36,7 @@ namespace Ark.Sqlite
             if (constraint == Constraint.NotNull) return $"CONSTRAINT {(!string.IsNullOrEmpty(constraintname) ? $"{constraintname}_{SqliteManager.RandomString(5)}" : $"CST_NN_{SqliteManager.RandomString(7)}")} NOT NULL";
             if (constraint == Constraint.Primary) return $"CONSTRAINT {(!string.IsNullOrEmpty(constraintname) ? $"{constraintname}_{SqliteManager.RandomString(5)}" : $"CST_PK_{SqliteManager.RandomString(7)}")} PRIMARY KEY";
             if (constraint == Constraint.Primary_AutoIncrement) return $"CONSTRAINT {(!string.IsNullOrEmpty(constraintname) ? $"{constraintname}_{SqliteManager.RandomString(5)}" : $"CST_PKAI_{SqliteManager.RandomString(5)}")} PRIMARY KEY AUTOINCREMENT";
-            if (constraint == Constraint.Unique) return $"CONSTRAINT {(!string.IsNullOrEmpty(constraintname) ? $"{constraintname}_{SqliteManager.RandomString(5)}" : $"CST_UQ_{SqliteManager.RandomString(5)}")} PRIMARY KEY AUTOINCREMENT";
+            if (constraint == Constraint.Unique) return $"CONSTRAINT {(!string.IsNullOrEmpty(constraintname) ? $"{constraintname}_{SqliteManager.RandomString(5)}" : $"CST_UQ_{SqliteManager.RandomString(5)}")} UNIQUE";
             if (constraint == Constraint.Check)
             {
                 if (checks == null) throw new InvalidDataException("check_list");
