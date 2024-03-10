@@ -60,9 +60,15 @@ namespace Ark.Sqlite
         {
             ExecuteQuery(new TableScript().GenerateUpdateScript(table, cols, where));
         }
-        public void InsertTable(string table, Dictionary<string, object> cols)
+        /// <summary>
+        /// inserts values passed and returns the last inserted identity
+        /// </summary>
+        /// <param name="table"></param>
+        /// <param name="cols"></param>
+        /// <returns></returns>
+        public object InsertTable(string table, Dictionary<string, object> cols)
         {
-            ExecuteQuery(new TableScript().GenerateInsertScript(table, cols));
+            return ExecuteQuery(new TableScript().GenerateInsertScript(table, cols));
         }
         public void CreateTable(string table, Dictionary<string, ColumnProp> cols)
         {
