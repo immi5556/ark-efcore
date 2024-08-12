@@ -38,6 +38,13 @@ namespace Ark.View
                             bb.Append("</tr></thead>");
                             bb.Append("<tbody>");
                             first_executed = false;
+
+                            bb.Append("<tr>");
+                            foreach (var p in (IDictionary<string, object>)v)
+                            {
+                                bb.Append($"<td style='border: 1px solid #ddd;'>{p.Value}</td>");
+                            }
+                            bb.Append("</tr>");
                         }
                         else
                         {
