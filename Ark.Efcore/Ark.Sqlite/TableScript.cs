@@ -81,14 +81,14 @@ namespace Ark.Sqlite
             col_update.ToList().ForEach(c =>
             {
                 var key = RESERVED_WORDS.Contains(c.Key.ToUpper()) ? $"[{c.Key}]" : c.Key;
-                str_upd = str_upd + $"{key} = {(c.Value == null ? "null," : $"'{SqliteManager.ReplaceSpecialChar(c.Value.ToString(), new Dictionary<string, string?>() { { "'", "" } })}'")},";
+                str_upd = str_upd + $"{key} = {(c.Value == null ? "null" : $"'{SqliteManager.ReplaceSpecialChar(c.Value.ToString(), new Dictionary<string, string?>() { { "'", "" } })}'")},";
             });
             str_upd = str_upd.TrimEnd(',');
             if (col_where.Count > 0) str_upd = str_upd + " where ";
             col_where.ToList().ForEach(c =>
             {
                 var key = RESERVED_WORDS.Contains(c.Key.ToUpper()) ? $"[{c.Key}]" : c.Key;
-                str_upd = str_upd + $" {key} = {(c.Value == null ? "null," : $"'{SqliteManager.ReplaceSpecialChar(c.Value.ToString(), new Dictionary<string, string?>() { { "'", "" } })}'")} AND";
+                str_upd = str_upd + $" {key} = {(c.Value == null ? "null" : $"'{SqliteManager.ReplaceSpecialChar(c.Value.ToString(), new Dictionary<string, string?>() { { "'", "" } })}'")} AND";
             });
             str_upd = str_upd.TrimEnd("AND".ToCharArray());
             return $"{str_upd};";
