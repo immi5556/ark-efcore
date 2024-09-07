@@ -61,6 +61,26 @@ namespace Ark.Sqlite
             });
             return tbl + ");";
         }
+        public string GenerateColumnExistScript(string tbl, string column)
+        {
+            return $"SELECT EXISTS (SELECT * FROM sqlite_master WHERE tbl_name = '{tbl}' AND sql LIKE '%{column}%');";
+        }
+        public string GenerateAlterAddColumn(string table, string col_Name, ColumnProp col_param)
+        {
+            if (string.IsNullOrEmpty(col_Name)) throw new ArgumentNullException("col_Name");
+            if (col_param == null) throw new ArgumentNullException("col_param");
+            string tbl = $"ALTER TABLE {table} ADD COLUMN ";
+                var key = RESERVED_WORDS.Contains(col_Name.ToUpper()) ? $"[{col_Name.ToUpper()}]" : col_Name.ToUpper();
+                tbl = tbl + $" {key} {GetSqliteType(col_param.DataType)} {GetSqliteConstraints(col_Name, col_param)}";
+            return tbl + ";";
+        }
+        public string GenerateAlterDropColumn(string table, string col_Name)
+        {
+            if (string.IsNullOrEmpty(col_Name)) throw new ArgumentNullException("col_Name");
+            var key = RESERVED_WORDS.Contains(col_Name.ToUpper()) ? $"[{col_Name.ToUpper()}]" : col_Name.ToUpper();
+            string tbl = $"ALTER TABLE {table} DROP COLUMN {col_Name}";
+            return tbl + ";";
+        }
         public string GenerateInsertScript(string table, Dictionary<string, object> col_param)
         {
             var str_ins = $@"INSERT INTO {table} (";
