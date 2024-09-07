@@ -23,6 +23,7 @@ namespace Ark.View
                     StringBuilder bb = new StringBuilder();
                     var cstr = (output.Attributes["connection-string"].Value ?? "").ToString();
                     var dqry = (output.Attributes["Data-Qry"].Value ?? "").ToString();
+                    var pre_format_cols = (output.Attributes["data-preformat"].Value ?? "").ToString().Split(',').Where(t => !string.IsNullOrEmpty(t.Trim())).Select(t => t.ToLower()).ToList();
                     if (string.IsNullOrEmpty(cstr) || string.IsNullOrEmpty(dqry)) return;
                     var dyn = new Ark.Sqlite.SqliteManager($"Data Source=./{cstr}").Select(dqry);
                     bool first_executed = true;
@@ -51,7 +52,14 @@ namespace Ark.View
                             bb.Append("<tr>");
                             foreach (var p in (IDictionary<string, object>)v)
                             {
-                                bb.Append($"<td style='border: 1px solid #ddd;'>{p.Value}</td>");
+                                if (pre_format_cols.Contains(p.Key.ToLower()))
+                                {
+                                    bb.Append($"<td style='border: 1px solid #ddd;'><pre>{p.Value}</pre></td>");
+                                }
+                                else
+                                {
+                                    bb.Append($"<td style='border: 1px solid #ddd;'>{p.Value}</td>");
+                                }
                             }
                             bb.Append("</tr>");
                         }
