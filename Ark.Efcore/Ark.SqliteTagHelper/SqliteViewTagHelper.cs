@@ -23,7 +23,7 @@ namespace Ark.View
                     StringBuilder bb = new StringBuilder();
                     var cstr = (output.Attributes["connection-string"].Value ?? "").ToString();
                     var dqry = (output.Attributes["Data-Qry"].Value ?? "").ToString();
-                    var pre_format_cols = (output.Attributes["data-preformat"].Value ?? "").ToString().Split(',').Where(t => !string.IsNullOrEmpty(t.Trim())).Select(t => t.ToLower()).ToList();
+                    var pre_format_cols = (output.Attributes.ContainsName("data-preformat") ? (output.Attributes["data-preformat"].Value ?? "") : "").ToString().Split(',').Where(t => !string.IsNullOrEmpty(t.Trim())).Select(t => t.ToLower()).ToList();
                     if (string.IsNullOrEmpty(cstr) || string.IsNullOrEmpty(dqry)) return;
                     var dyn = new Ark.Sqlite.SqliteManager($"Data Source=./{cstr}").Select(dqry);
                     bool first_executed = true;
