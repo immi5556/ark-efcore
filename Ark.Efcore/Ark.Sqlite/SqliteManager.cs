@@ -88,6 +88,7 @@ namespace Ark.Sqlite
         public void AlterTable(string table, string col_name, ColumnProp col, bool overwrite = false)
         {
             if (overwrite && IsColumnExist(table, col_name)) Execute(new TableScript().GenerateAlterDropColumn(table, col_name));
+            if (IsColumnExist(table, col_name)) return; // check if this is right
             Execute(new TableScript().GenerateAlterAddColumn(table, col_name, col));
         }
         public void Execute(string qry)
