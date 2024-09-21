@@ -65,6 +65,10 @@ namespace Ark.Sqlite
         {
             return $"SELECT EXISTS (SELECT * FROM sqlite_master WHERE tbl_name = '{tbl}' AND sql LIKE '%{column}%');";
         }
+        public string GenerateTableExistScript(string tbl)
+        {
+            return $"SELECT name FROM sqlite_master WHERE type='table' AND name='{tbl}';";
+        }
         public string GenerateAlterAddColumn(string table, string col_Name, ColumnProp col_param)
         {
             if (string.IsNullOrEmpty(col_Name)) throw new ArgumentNullException("col_Name");

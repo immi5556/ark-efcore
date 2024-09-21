@@ -85,6 +85,10 @@ namespace Ark.Sqlite
         {
             return ExecuteCount(new TableScript().GenerateColumnExistScript(tbl, column)) > 0;
         }
+        public bool IsTableExist(string tbl_name)
+        {
+            return ExecuteCount(new TableScript().GenerateTableExistScript(tbl_name)) > 0;
+        }
         public void AlterTable(string table, string col_name, ColumnProp col, bool overwrite = false)
         {
             if (overwrite && IsColumnExist(table, col_name)) Execute(new TableScript().GenerateAlterDropColumn(table, col_name));
@@ -172,7 +176,7 @@ namespace Ark.Sqlite
                 using (var connection = new SqliteConnection(_connection_string))
                     return connection.QueryFirst<T>(qry);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 if (ex.Message.Contains("Sequence contains no elements")) return default(T?);
                 throw;
