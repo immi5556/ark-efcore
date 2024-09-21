@@ -67,7 +67,7 @@ namespace Ark.Sqlite
         }
         public string GenerateTableExistScript(string tbl)
         {
-            return $"SELECT name FROM sqlite_master WHERE type='table' AND name='{tbl}';";
+            return $"SELECT EXISTS (SELECT name FROM sqlite_master WHERE type='table' AND name='{tbl}');";
         }
         public string GenerateAlterAddColumn(string table, string col_Name, ColumnProp col_param)
         {
