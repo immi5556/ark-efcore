@@ -4,7 +4,7 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>0.1.1</Version>
+		<Version>0.1.2</Version>
 		<Description>
 			base implementation for tag help view for sqlite-view, dir-list.
 			included new upload-view control
@@ -24,7 +24,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Ark.Sqlite" Version="1.1.2" />
+		<PackageReference Include="Ark.Sqlite" Version="1.1.3" />
 		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
 		<PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.3.0" />
 	</ItemGroup>
