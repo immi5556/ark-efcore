@@ -9,6 +9,7 @@
 			simple sqlite helper library
 			- creating table from object
 			- creating dml query generation (update, insert)
+			- enable delete options for sqlite tble.
 		</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
