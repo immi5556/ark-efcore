@@ -49,6 +49,7 @@ namespace Ark.View
                             {
                                 bb.Append($"<td style='border: 1px solid #ddd;'>{p.Value}</td>");
                             }
+                            if (delete_cols != null && delete_cols.Count > 0 && !string.IsNullOrEmpty(table)) bb.Append($"<td style='padding: 15px;white-space: nowrap;'>Action</td>");
                             bb.Append("</tr>");
                         }
                         else
