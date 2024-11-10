@@ -28,6 +28,8 @@ nuget install:
     - attributes
         - connection-string:(mandatory) sqlite db file relative path
         - data-qry:(mandatory) sqlite query to fetch the data
+        - data-delete: (optionale) list of columns that is used in whre condition
+            - data-table: needed, if data-delete is enabled,    
 
 PREVIEW
 ![sqlite-view preview](./sqlite-view-preview.PNG)

@@ -24,9 +24,12 @@ namespace Ark.View
                     var cstr = (output.Attributes["connection-string"].Value ?? "").ToString();
                     var dqry = (output.Attributes["Data-Qry"].Value ?? "").ToString();
                     var pre_format_cols = (output.Attributes.ContainsName("data-preformat") ? (output.Attributes["data-preformat"].Value ?? "") : "").ToString().Split(',').Where(t => !string.IsNullOrEmpty(t.Trim())).Select(t => t.ToLower()).ToList();
+                    var delete_cols = (output.Attributes.ContainsName("data-delete") ? (output.Attributes["data-delete"].Value ?? "") : "").ToString().Split(',').Where(t => !string.IsNullOrEmpty(t.Trim())).Select(t => t.ToLower().Trim()).ToList();
+                    var table = (output.Attributes.ContainsName("data-table") ? (output.Attributes["data-table"].Value ?? "") : "").ToString();
                     if (string.IsNullOrEmpty(cstr) || string.IsNullOrEmpty(dqry)) return;
                     var dyn = new Ark.Sqlite.SqliteManager($"Data Source=./{cstr}").Select(dqry);
                     bool first_executed = true;
+                    var uqq = TagExtn.RandomStr();
                     foreach (dynamic v in dyn)
                     {
                         if (first_executed)
@@ -36,6 +39,7 @@ namespace Ark.View
                             {
                                 bb.Append($"<td style='padding: 15px;white-space: nowrap;'>{p.Key}</td>");
                             }
+                            if (delete_cols != null && delete_cols.Count > 0 && !string.IsNullOrEmpty(table)) bb.Append($"<td style='padding: 15px;white-space: nowrap;'>Action</td>");
                             bb.Append("</tr></thead>");
                             bb.Append("<tbody>");
                             first_executed = false;
@@ -50,7 +54,8 @@ namespace Ark.View
                         else
                         {
                             bb.Append("<tr>");
-                            foreach (var p in (IDictionary<string, object>)v)
+                            IDictionary<string, object> obj = (IDictionary<string, object>)v;
+                            foreach (var p in obj)
                             {
                                 if (pre_format_cols.Contains(p.Key.ToLower()))
                                 {
@@ -61,11 +66,22 @@ namespace Ark.View
                                     bb.Append($"<td style='border: 1px solid #ddd;'>{p.Value}</td>");
                                 }
                             }
+                            if (delete_cols != null && delete_cols.Count > 0 && !string.IsNullOrEmpty(table)) bb.Append($"<td style='padding: 15px;white-space: nowrap;'><button onclick=\"del_{uqq}(this, '{table}', encodeURIComponent(`{string.Join(" and ",delete_cols.Where(t => obj.ContainsKey(t)).Select(t => t + "='" + obj[t] + "'"))}`), '{cstr}')\">Delete</button></td>");
                             bb.Append("</tr>");
                         }
                     }
                     bb.Append("</tbody>");
                     output.PostContent.AppendHtml(bb.ToString() + "<lord-jesus-my-master></lord-jesus-my-master>");
+                    output.PostContent.AppendHtml(@$"<script>
+function del_{uqq}(ele, tbl, cond, cstr){{
+console.log(tbl, cond, cstr);
+fetch('/ark/sqlite/delete/' + tbl + '/' + cond + '/' + encodeURIComponent(cstr)).then(resp => resp.json()).then(data => {{ 
+                        console.log(data);
+                        if (!data.errored) ele.closest('tr').remove();
+                        else alert('delete failed.')
+                    }})
+        }}
+</script>");
                 }
             }
 
