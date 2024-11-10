@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Web;
 
 namespace Ark.View
 {
@@ -10,7 +11,8 @@ namespace Ark.View
         {
             try
             {
-                var dyn = new Ark.Sqlite.SqliteManager($"Data Source=./{conn_str}").ExecuteQuery($"delete from {table} where {del_cond}");
+                var constr = HttpUtility.UrlDecode(conn_str);
+                var dyn = new Ark.Sqlite.SqliteManager($"Data Source=./{constr}").ExecuteQuery($"delete from {table} where {del_cond}");
                 return new
                 {
                     errored = false,
