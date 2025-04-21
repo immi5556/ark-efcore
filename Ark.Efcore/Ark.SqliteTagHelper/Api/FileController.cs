@@ -80,13 +80,13 @@ namespace Ark.View
             // This can prevent some unnecessary accesses. 
             // These kind of file names won't be existing at all. 
             file = HttpUtility.UrlDecode(file);
-            if (string.IsNullOrWhiteSpace(file))
-                throw new System.Web.Http.HttpResponseException(HttpStatusCode.NotFound);
+            //if (string.IsNullOrWhiteSpace(file))
+            //    throw new System.Web.Http.HttpResponseException(HttpStatusCode.NotFound);
 
             FileInfo fileInfo = new FileInfo(Path.Combine(Environment.CurrentDirectory, file));
 
-            if (!fileInfo.Exists)
-                throw new System.Web.Http.HttpResponseException(HttpStatusCode.NotFound);
+            //if (!fileInfo.Exists)
+            //    throw new System.Web.Http.HttpResponseException(HttpStatusCode.NotFound);
 
             long totalLength = fileInfo.Length;
 
