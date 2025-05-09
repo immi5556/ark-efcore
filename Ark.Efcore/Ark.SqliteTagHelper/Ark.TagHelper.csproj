@@ -4,9 +4,10 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>0.1.9</Version>
+		<Version>0.2.0</Version>
 		<Description> 
-			base implementation for tag help view for sqlite-view, dir-list.
+			v0.2.0 - upgrade change connection string path to attribute (imp) 
+			tag help view for sqlite-view, dir-list.
 			included new upload-view control
 		</Description>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>

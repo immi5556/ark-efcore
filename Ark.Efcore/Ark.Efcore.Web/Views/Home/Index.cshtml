@@ -9,19 +9,19 @@
 </div>
 <hr />
 <span>Check sqlite-view</span>
-<sqlite-view Connection-String="church.db" data-qry="select * from audit_log;"></sqlite-view>
+<sqlite-view Connection-String="Data Source=./church.db" data-qry="select * from audit_log;"></sqlite-view>
 <hr />
 <span>Check sqlite-view</span>
-<sqlite-view Connection-String="church.db" data-qry="select * from members;"></sqlite-view>
+<sqlite-view Connection-String="Data Source=./church.db" data-qry="select * from members;"></sqlite-view>
 <br />
 <hr />
-<span>Check sqlite-view wite pre</span>
-<sqlite-view Connection-String="church.db" data-qry="select * from members;" data-preformat="col1,col2"></sqlite-view>
+<span>Check sqlite-view with pre</span>
+<sqlite-view Connection-String="Data Source=./church.db" data-qry="select * from members;" data-preformat="col1,col2"></sqlite-view>
 <br />
 <hr />
-<span>Check sqlite-view wite pre and delete</span>
+@* <span>Check sqlite-view wite pre and delete</span>
 <sqlite-view Connection-String="church.db" data-qry="select * from members;" data-delete="member_id, name" data-table="members" data-preformat="col1,col2"></sqlite-view>
-<br />
+ *@<br />
 <hr />
 <span>Check dir-list 1</span>
 <dir-list dir-path="./Invalid"></dir-list>

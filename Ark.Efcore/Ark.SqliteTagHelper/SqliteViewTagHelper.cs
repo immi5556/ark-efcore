@@ -27,7 +27,7 @@ namespace Ark.View
                     var delete_cols = (output.Attributes.ContainsName("data-delete") ? (output.Attributes["data-delete"].Value ?? "") : "").ToString().Split(',').Where(t => !string.IsNullOrEmpty(t.Trim())).Select(t => t.ToLower().Trim()).ToList();
                     var table = (output.Attributes.ContainsName("data-table") ? (output.Attributes["data-table"].Value ?? "") : "").ToString();
                     if (string.IsNullOrEmpty(cstr) || string.IsNullOrEmpty(dqry)) return;
-                    var dyn = new Ark.Sqlite.SqliteManager($"Data Source=./{cstr}").Select(dqry);
+                    var dyn = new Ark.Sqlite.SqliteManager($"{cstr}").Select(dqry);
                     bool first_executed = true;
                     var uqq = TagExtn.RandomStr();
                     foreach (dynamic v in dyn)
