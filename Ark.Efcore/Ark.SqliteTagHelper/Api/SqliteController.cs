@@ -12,7 +12,7 @@ namespace Ark.View
             try
             {
                 var constr = HttpUtility.UrlDecode(conn_str);
-                var dyn = new Ark.Sqlite.SqliteManager($"Data Source=./{constr}").ExecuteQuery($"delete from {table} where {del_cond}");
+                var dyn = new Ark.Sqlite.SqliteManager($"{constr}").ExecuteQuery($"delete from {table} where {del_cond}");
                 return new
                 {
                     errored = false,
