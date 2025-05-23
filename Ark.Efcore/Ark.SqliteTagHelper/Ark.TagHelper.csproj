@@ -4,9 +4,9 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>0.2.1</Version>
+		<Version>0.2.2</Version>
 		<Description>
-			v0.2.1 - enable audit manager
+			v0.2.2 - enable audit manager
 			v0.2.0 - upgrade change connection string path to attribute (imp)
 			tag help view for sqlite-view, dir-list.
 			included new upload-view control
